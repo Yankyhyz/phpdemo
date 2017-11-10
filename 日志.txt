@@ -1,4 +1,4 @@
-每次拷贝项目 到本地时 需要注意的事项：
+**********每次拷贝项目 到本地时 需要注意的事项：*******
 1.是否将项目访问的形式改成通过域名或别名访问，而不是直接localhost/项目名称 这样格式访问了
 检查方式：
 1）C:\Windows\System32\drivers\etc 中的hosts 文件最后是否添加了
@@ -11,3 +11,8 @@ ServerName www.tp5.com
 3）如若有修改httpd.conf，记得重新启动wamp服务
 4）可通过doc命令行检查是否能够访问www.tp5.com：ctrl+r-》cmd-》输入：ping www.tp5.com
 
+*********** 本项目在github 上的检出位置  ********
+https://github.com/Yankyhyz/phpdemo.git/trunk/
+
+
+*****************************************
