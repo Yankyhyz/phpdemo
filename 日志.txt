@@ -1,0 +1,13 @@
+每次拷贝项目 到本地时 需要注意的事项：
+1.是否将项目访问的形式改成通过域名或别名访问，而不是直接localhost/项目名称 这样格式访问了
+检查方式：
+1）C:\Windows\System32\drivers\etc 中的hosts 文件最后是否添加了
+如：127.0.0.1 www.tp5.com 格式的内容
+2）在php的环境下，也就是直接通过wamp软件点击打开Apache的httpd.conf 文本  最后是否添加，如下内容
+<VirtualHost *:80>
+DocumentRoot "D:\wamp64\www\phpdemo\public"
+ServerName www.tp5.com
+</VirtualHost>
+3）如若有修改httpd.conf，记得重新启动wamp服务
+4）可通过doc命令行检查是否能够访问www.tp5.com：ctrl+r-》cmd-》输入：ping www.tp5.com
+
