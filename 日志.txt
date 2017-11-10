@@ -14,5 +14,29 @@ ServerName www.tp5.com
 *********** 本项目在github 上的检出位置  ********
 https://github.com/Yankyhyz/phpdemo.git/trunk/
 
-
+注意：更新提交时，可能需要打开网站https://github.com/
 *****************************************
+
+********  SQL追踪器工具的安装********
+    安装与使用
+
+    到TPshop官网下载解压
+    修改 C:\Windows\System32\drivers\etc\hosts 文件!
+    修改 apache 配置文件
+    修改 config.php 文件 重启MYSQL
+    
+软件：https://pan.baidu.com/s/1cxHQge
+教程：https://www.kancloud.cn/tpshop/thinkphp5/221597
+*********************************
+
+
+********  tp5 中引入css文件******
+可以这样访问
+比如<link href="/static/css/font-awesome.css" rel="stylesheet">
+或者 这样
+'view_replace_str' => [
+'__CS__' => DS.'static'.DS.'css'.DS, //不需要带上public，之前以为跟3.2一样要加public
+前端
+<link href="__CS__bootstrap.min.css" rel='stylesheet' type='text/css' />
+
+****************
