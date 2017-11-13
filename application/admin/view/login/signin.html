@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>注册</title>
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/js/jquery-validation-1.17.0/demo/site-demos.css" rel="stylesheet">
+		<script src="/js/jquery-3.2.1.js"></script>
+		<script src="/js/bootstrap.js"></script>
+		<script src="/js/jquery-validation-1.17.0/dist/jquery.validate.js"></script>
+		<script src="/js/jquery-validation-1.17.0/dist/localization/messages_zh.js"></script>
+
+<style>
+	body{
+				font-family: "Verdana", "Tahoma", "Lucida Grande", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+				background-color: #323436;
+				background: url(/images/loginbg_01.jpg) no-repeat center center fixed;
+	}
+	.form-group{
+		/*margin-bottom: 30px;*/
+	}
+	.main-box{
+				position: absolute;
+				top: 35%;
+				left: 50%;
+				margin: -200px 0 0 -180px;
+				padding: 15px 20px;
+				width: 360px;
+				height: auto;
+				min-width: 320px;
+				background: #FAFAFA;
+				background: rgba(255, 255, 255, 0.5);
+				box-shadow: 1px 5px 8px #888888;
+				border-radius: 6px;
+		/*width: 300px;
+		background: #ffffff;*/
+	}
+</style>
+	<script>
+		$(function(){
+			
+			// 获取日期和时间
+			var mydate=new Date();  
+			var tdate=mydate.toLocaleDateString();
+		    var mytime = new Date();
+		    var ttime = "";
+		    var hh=mytime.getHours();
+		    var mm = mytime.getMinutes();
+		    var ss = mytime.getSeconds();
+		    if(mytime.getHours()>9){
+		     ttime += hh+":";
+		    }
+		    else{
+		     ttime += "0" + hh+":";
+		    }
+		    if(mytime.getMinutes()>9){
+		     ttime += mm+":";
+		    }
+		    else{
+		     ttime += "0" + mm+":";
+		    }
+		        if(mytime.getSeconds()>9){
+		     ttime += ss;
+		    }
+		    else{
+		     ttime += "0" + ss;
+		    }
+
+			dtime=tdate+' '+ttime;
+		    $('#userCtime').val(dtime); 
+		});
+	</script>
+
+<script>
+$().ready(function() {
+	//设置验证插件的某些设置
+$.validator.setDefaults({
+   errorPlacement: function(error, element) {  
+    error.appendTo(element.parent()); 
+}
+})
+// 在键盘按下并释放及提交后验证提交表单
+  $("#sigin_form").validate({
+	    rules: {
+	      userName: "required",
+	      userNickName: "required",
+	      userPassword: {
+	        required: true,
+	        minlength: 5
+	      },
+	      confirmpassword: {
+	        required: true,
+	        minlength: 5,
+	        equalTo: "#userPassword"
+	      },
+//	      userEmail: {
+//	        required: true,
+//	        email: true
+//	      },
+//	      userPhone: "required"
+	    },
+	    messages: {
+	      userName: "请输入您的账号",
+	      userNickName: "请输入您的昵称",
+	      userPassword: {
+	        required: "请输入密码",
+	        minlength: "密码长度不能小于 5 个字母"
+	      },
+	      confirmpassword: {
+	        required: "请输入密码",
+	        minlength: "密码长度不能小于 5 个字母",
+	        equalTo: "两次密码输入不一致"
+	      },
+	      userEmail: "请输入一个正确的邮箱",
+	      userPhone: "请选择正确的手机号码"
+	    }
+	});
+});
+</script>
+	</head>
+	<body>
+	<div class="container"> 
+		<form method="post" action="{:url('admin/Login/addUser')}" id="sigin_form">
+			<!--token验证-->
+			<input type="hidden" name="__token__" value="{$Request.token}" />
+			<!--用户注册时间-->
+			<input type="hidden" id='userCtime' name="userCtime"  />
+		<div class="main-box text-center">
+			<div class="form-group">
+				<label class="control-label" for="userName">登陆账号：</label>
+				<input type="text" class="form-control" name="userName" id="userName"/>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="userNickName">账号昵称：</label>
+				<input type="text" class="form-control" name="userNickName"/>
+			</div>	
+			<div class="form-group ">
+				<label class="control-label" for="userPassword">登录密码：</label>
+				<input type="password" class="form-control" name="userPassword" id="userPassword"/>
+			</div>
+			<div class="form-group ">
+				<label class="control-label" for="confirmpassword">确认密码：</label>
+				<input type="password" class="form-control" name="confirmpassword"/>
+			</div>
+			<div class="form-group ">
+				<label class="control-label" for="userPhone">手机：</label>
+				<input type="text" class="form-control" name="userPhone"/>
+			</div>	
+			<div class="form-group ">
+				<label class="control-label" for="userEmail">邮箱：</label>
+				<input type="text" class="form-control" name="userEmail"/>
+			</div>	
+			<div class="checkbox">
+				<label><input type="checkbox"> Check me out</label></div>
+			<button type="submit" class="btn btn-primary">确定</button> 
+			<button type="reset"  class="btn btn-default">重置</button>
+		</div>
+	</div>
+
+	</form>	
+	</body>
+
+</html>
